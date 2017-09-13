@@ -5,6 +5,7 @@ import _ from 'lodash';
 import { uiModules } from 'ui/modules';
 import aggTableTemplate from 'ui/agg_table/agg_table.html';
 import { RegistryFieldFormatsProvider } from 'ui/registry/field_formats';
+import { SearchSourceProvider } from 'ui/courier/data_source/search_source';
 
 uiModules
 .get('kibana')
@@ -36,6 +37,18 @@ uiModules
       self.csv = {
         separator: config.get('csv:separator'),
         quoteValues: config.get('csv:quoteValues')
+      };
+
+      self.tst = function (formatted) {
+          console.log("BEFORE");
+	  const SearchSource = Private(SearchSourceProvider);
+	  const searchSource = new SearchSource();
+	  
+	  //searchSource._flatten().then(function(value) {
+          //    console.log('value: ' + value);
+          //});
+
+          console.log("AFTER");
       };
 
       self.exportAsCsv = function (formatted) {
